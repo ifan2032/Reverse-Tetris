@@ -13,13 +13,14 @@
 // pieces can be fit in a 3by3 grid, or at least some square grid
 
 // algorithm-y stuff
-const w = 4 // width of tetris thing
-const h = 5;
+const w = 10; // width of tetris thing
+const h = 16;
 const piece_dim = 3;  // all pieces fit in a dim by dim square
 
 const PIECES = [
   [[0,1,0],[0,1,0],[0,1,0]],
-  [[0,0,0],[0,1,1],[0,1,1]]
+  [[0,0,0],[0,1,1],[0,1,1]],
+  [[1,1,0],[0,1,0],[1,1,0]]
 ];
 
 // 0 1 0 ==> 0 0 0
@@ -58,12 +59,11 @@ for (var i = 0; i < w; i++) {
   skyline.push(0);
 }
 
-let piece_sequence = [PIECES[0], PIECES[0], PIECES[1], PIECES[1], PIECES[0]];
-// let piece_sequence = [PIECES[0], PIECES[0], PIECES[0], PIECES[0], PIECES[0]];
+let piece_sequence = [PIECES[0], PIECES[0], PIECES[1], PIECES[1], PIECES[1], PIECES[1]];
 let n = piece_sequence.length;
 
 // dp_table stores the largest number of pieces that you can fit if you started with specified skyline from piece i
-let dp_table = []; // dp[i, skyline] = max( dp[i+1, new_skyline] if you place piece_sequence[i] to make the skyline into skyline')
+let dp_table = {}; // dp[i, skyline] = max( dp[i+1, new_skyline] if you place piece_sequence[i] to make the skyline into skyline')
 
 function hash(skyline, index){
   return JSON.stringify(skyline)+"_index:"+index;
@@ -89,29 +89,26 @@ function dp(index, skyline) {
       let new_skyline = updateSkyline(skyline, piece, angle, pos);
       if(new_skyline != false){
         isPossible = true;
-        // if (dp_table[hash(new_skyline, index)] was already computed) {
-        //   let opt_soln = the already computed value;
-        //   let new_val = opt_soln.val;
-        //   let next_strategy = opt_soln.strategy;
-        // }
-        // else { // recurse, and store it
-          let opt_soln = dp(index+1, new_skyline);
-          let new_val = opt_soln.val;
-          let next_strategy = opt_soln.strategy;
-          // dp_table[hash(new_skyline, index)] = {"val": new_val, "strat": next_strategy};
-        // }
+        let opt_soln;
+        if (dp_table[hash(new_skyline, index)]) {
+          opt_soln = dp_table[hash(new_skyline, index)];
+        }
+        else { // recurse, and store it
+          opt_soln = dp(index+1, new_skyline);
+          dp_table[hash(new_skyline, index)] = {"val": opt_soln.val, "strategy": opt_soln.strategy};
+        }
+        let new_val = opt_soln.val;
+        let next_strategy = opt_soln.strategy;
         if(new_val > max_val){
           max_val = new_val;
           best_option["angle"] = angle;
           best_option["pos"] = pos;
-          console.log(opt_soln);
           best_next_strategy = next_strategy;
         }
       }
     }
   }
 
-  console.log(best_next_strategy);
   if(!isPossible){
     return {"val": 0, "strategy": []};
   }
@@ -155,6 +152,8 @@ function updateSkyline(old_skyline, piece, angle, pos) {
 }
 
 let solution = dp(0, skyline);
+console.log("YAY IM DONE");
+console.log(solution);
 
 function setup(){
   createCanvas(500,500);
