@@ -1,4 +1,5 @@
 // TODO:
+// COLORS!!!!!
 // precompute piece rotations
 // precompute piece "profiles" Leon's height things
 
@@ -6,31 +7,41 @@
 // this is not classic tetris
 // two of the biggest differences between this game and tetris are
 // 1) rows never clear
-// 2) you can't put stuff in overhangs
-// 3) you can break tiles if you feel like it
+// 2) you can't put stuff in overhangs, because the tile things aren't really connected to themselves and can kinda split up
+// 3) you can break tiles if you feel like it see above
 
 // conventions:
 // pieces can be fit in a 3by3 grid, or at least some square grid
 
 // algorithm-y stuff
-const w = 10; // width of tetris thing
-const h = 16;
-const piece_dim = 3;  // all pieces fit in a dim by dim square
+const w = 4; // width of tetris thing
+const h = 5;
+const piece_dim = 3;
+const ANIMATION_WAIT_TIME = 2000;
 
+// NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
-  [[0,1,0],[0,1,0],[0,1,0]],
+  [[1,0,0],[1,0,0],[1,0,0]],
   [[0,0,0],[0,1,1],[0,1,1]],
-  [[1,1,0],[0,1,0],[1,1,0]]
+  [[1,1,0],[0,1,0],[1,1,0]],
+  [[0,1,0],[1,1,1],[0,1,0]]
 ];
+
+// TODO: put a check to make sure that the pieces are all left justified
+
+function copyPiece(piece){
+  let newpiece = [];
+  for (var i = 0; i < piece_dim; i++) {
+    newpiece.push(piece[i].slice());
+  }
+  return newpiece;
+}
 
 // 0 1 0 ==> 0 0 0
 // 0 1 0 ==> 1 1 1
 // 0 1 0 ==> 0 0 0
 function rotatePiece90(piece){
-  let newpiece = [];
-  for (var i = 0; i < piece_dim; i++) {
-    newpiece.push(piece[i].slice());
-  }
+  let newpiece = copyPiece(piece);
   const x = Math.floor(piece_dim/2);
   const y = piece_dim - 1;
   for (let i = 0; i < x; i++) {
@@ -48,10 +59,11 @@ function rotatePiece90(piece){
 
 // angle = 0,1,2,3 corresponding to 0*90, 1*90, 2*90, 3*90
 function rotatePiece(piece, angle){
+  let newpiece = copyPiece(piece);
   for (var i = 0; i < angle; i++) {
-    piece = rotatePiece90(piece);
+    newpiece = rotatePiece90(newpiece);
   }
-  return piece;
+  return newpiece;
 }
 
 var skyline = [];
@@ -59,7 +71,7 @@ for (var i = 0; i < w; i++) {
   skyline.push(0);
 }
 
-let piece_sequence = [PIECES[0], PIECES[0], PIECES[1], PIECES[1], PIECES[1], PIECES[1]];
+let piece_sequence = [PIECES[0], PIECES[0], PIECES[1], PIECES[1], PIECES[0]];
 let n = piece_sequence.length;
 
 // dp_table stores the largest number of pieces that you can fit if you started with specified skyline from piece i
@@ -86,7 +98,9 @@ function dp(index, skyline) {
 
   for (let angle = 0; angle < 4; angle++){
     for (let pos = 0; pos < w; pos++){
+      //console.log(skyline);
       let new_skyline = updateSkyline(skyline, piece, angle, pos);
+      //console.log(new_skyline);
       if(new_skyline != false){
         isPossible = true;
         let opt_soln;
@@ -118,6 +132,7 @@ function dp(index, skyline) {
 }
 
 // returns the new skyline array, or false if it is impossible to place the piece
+//FIX: OVERHANG THINGS
 function updateSkyline(old_skyline, piece, angle, pos) {
   let oriented_piece = rotatePiece(piece, angle);
   let new_skyline = old_skyline.slice();
@@ -137,8 +152,8 @@ function updateSkyline(old_skyline, piece, angle, pos) {
   }
 
   for(var i = 0; i< heights.length; i++) {
-    if(i+pos >= w){
-      if(heights[i] != 0)
+    if(i+pos >= w){  // if it's overhanging
+      if(heights[i] != 0) // it better not be putting anything there
         return false;
     }
     else{
@@ -151,14 +166,43 @@ function updateSkyline(old_skyline, piece, angle, pos) {
   return new_skyline;
 }
 
-let solution = dp(0, skyline);
+let solution = null;
+solution = dp(0, skyline);
 console.log("YAY IM DONE");
 console.log(solution);
 
+let animation_ct = 0;
+let animation_skyline = [];
+for (var i = 0; i < w; i++) {
+  animation_skyline.push(0);
+}
+
 function setup(){
   createCanvas(500,500);
+  setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
 }
 
 function draw(){
-    background(0);
+  background(0, 255, 255);
+  fill(255,255,255);
+  stroke(0,0,0);
+  strokeWeight(10);
+  for (var i = 0; i < w; i++) {
+    rect(i*width/w, height - animation_skyline[i]*height/h, width/w, animation_skyline[i]*height/h);
+  }
+}
+
+function drawNextPiece(){
+  if(solution){
+    console.log(solution);
+    animation_skyline = updateSkyline(animation_skyline, piece_sequence[animation_ct], solution.strategy[animation_ct].angle, solution.strategy[animation_ct].pos);
+
+    if (animation_ct < solution.strategy.length-1) {
+        animation_ct += 1;
+        setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
+    }
+  }
+  else{
+      setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
+  }
 }
