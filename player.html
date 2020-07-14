@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 const NUM_PIECES = 4;
-const LENGTH_SEQUENCE = 10;
+const LENGTH_SEQUENCE = 8;
 for (var i = 0; i < LENGTH_SEQUENCE; i++) {
   let rowTag = $("<form></form>");
   rowTag.attr("id", "formrow"+i);
@@ -28,7 +28,9 @@ for (var i = 0; i < LENGTH_SEQUENCE; i++) {
 
     labelTag.append(inputTag);
 
-    let imgTag = $("<img src='https://awestover.github.io/data/homeData/alek.png' />");
+    let imgTag = $("<img />");
+    imgTag.attr("src", "");
+
     labelTag.append(imgTag);
 
     rowTag.append(labelTag);
@@ -41,8 +43,6 @@ function submit_form(){
   let user_seq = "";
   for (var i = 0; i < LENGTH_SEQUENCE; i++) {
     user_seq += $(`input[name='inputrow${i}']:checked`).val();
-
-
   }
 
   console.log(user_seq);

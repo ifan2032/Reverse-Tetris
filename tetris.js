@@ -72,9 +72,9 @@ function rotatePiece(piece, angle){
 
 // algorithm-y stuff
 const w = 4; // width of tetris thing
-const h = 6;
+const h = 8;
 const piece_dim = 3;
-const ANIMATION_WAIT_TIME = 100;
+const ANIMATION_WAIT_TIME = 3000;
 
 // NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
