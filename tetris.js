@@ -67,10 +67,10 @@ function rotatePiece(piece, angle){
 
 
 // algorithm-y stuff
-const w = 7; // width of tetris thing
-const h = 20;
+const w = 4; // width of tetris thing
+const h = 4;
 const piece_dim = 3;
-const ANIMATION_WAIT_TIME = 500;
+const ANIMATION_WAIT_TIME = 100;
 
 // NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
@@ -87,7 +87,7 @@ const COLORS = [
   "#ffff0003"
 ];
 
-let piece_sequence = [3, 2, 0,0,0,0,1,1,0,0,0, 0, 1, 2, 3, 1, 0, 2,3,1,2];
+let piece_sequence = [1,1,1,1];
 let n = piece_sequence.length;
 var skyline = zeroVec(w);
 // dp_table stores the largest number of pieces that you can fit if you started with specified skyline from piece i
