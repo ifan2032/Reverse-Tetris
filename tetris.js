@@ -13,9 +13,13 @@
 // 1) heuristic for doing bigger grids
 // 2) make epic player interface
 // falling animation????
+// 3) DONT WANT TO NEED TO LEFT JUSTIFY
 
+//make great pictures
+//by tomorrow: everything will be in bootstrap and look nice
 // ALEKTRISITY
 // LETRIS
+
 
 // general functions
 function zeroVec(dim){
@@ -68,14 +72,14 @@ function rotatePiece(piece, angle){
 
 // algorithm-y stuff
 const w = 4; // width of tetris thing
-const h = 4;
+const h = 6;
 const piece_dim = 3;
 const ANIMATION_WAIT_TIME = 100;
 
 // NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
   [[1,0,0],[1,0,0],[1,0,0]],
-  [[0,0,0],[0,1,1],[0,1,1]],
+  [[0,0,0],[1,1,0],[1,1,0]],
   [[1,1,0],[0,1,0],[1,1,0]],
   [[0,1,0],[1,1,1],[0,1,0]]
 ];
@@ -87,7 +91,16 @@ const COLORS = [
   "#ffff0003"
 ];
 
-let piece_sequence = [1,1,1,1];
+const urlParams = new URLSearchParams(window.location.search);
+const string_piece_sequence = urlParams.get("seq"); // "1111"
+let piece_sequence = [];
+for (let i = 0; i < string_piece_sequence.length; i++){
+  piece_sequence.push(parseInt(string_piece_sequence[i]));
+}
+
+
+
+
 let n = piece_sequence.length;
 var skyline = zeroVec(w);
 // dp_table stores the largest number of pieces that you can fit if you started with specified skyline from piece i
@@ -197,7 +210,7 @@ function updateGrid(old_grid, old_skyline, piece_type_index, angle, pos){
       }
     }
   }
-  return new_grid;
+return new_grid;
 }
 
 // RUNNING STUFF GAME PART
@@ -221,6 +234,7 @@ function setup(){
   createCanvas(500,500);
   setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
   frameRate(20);
+  background(255,255,255,100);
 }
 
 //draw is the function that runs over and over

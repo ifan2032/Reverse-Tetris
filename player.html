@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>player</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+<div id="player_sequence">
+</div>
+
+<script type="text/javascript">
+const NUM_PIECES = 4;
+const LENGTH_SEQUENCE = 10;
+for (var i = 0; i < LENGTH_SEQUENCE; i++) {
+  let rowTag = $("<form></form>");
+  rowTag.attr("id", "formrow"+i);
+  for(var j = 0; j < NUM_PIECES; j++) {
+    let labelTag = $("<label></label>");
+    let inputTag = $("<input>");
+    inputTag.attr("type", "radio");
+    inputTag.attr("value", j);
+    inputTag.attr("name", "inputrow"+i);
+    if(j == 0){
+      inputTag.attr("checked", true);
+    }
+
+    labelTag.append(inputTag);
+
+    let imgTag = $("<img src='https://awestover.github.io/data/homeData/alek.png' />");
+    labelTag.append(imgTag);
+
+    rowTag.append(labelTag);
+  }
+  $("#player_sequence").append(rowTag);
+}
+
+function submit_form(){
+  // get the sequence
+  let user_seq = "";
+  for (var i = 0; i < LENGTH_SEQUENCE; i++) {
+    user_seq += $(`input[name='inputrow${i}']:checked`).val();
+
+
+  }
+
+  console.log(user_seq);
+  // spit them out to computer.html?seq=10012203
+  window.location.href = "computer.html?seq="+user_seq;
+}
+
+</script>
+
+<button onclick="submit_form()" class="btn">PLAY</button>
+
+  </body>
+</html>
