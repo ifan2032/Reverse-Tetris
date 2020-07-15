@@ -1,22 +1,76 @@
 body {
-  background-color: yellow;
-  text-align : center;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
 }
+
+#beautiful-image {
+  background: url('stock/background.jpg') top center no-repeat;
+  height: 820px;
+}
+
+.beautiful-image-text {
+    max-width: 1200px;
+    margin: -30px auto 0;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+}
+
+.beautiful-image-text h1 {
+    color: #F7CAC9;
+    font-size: 7em;
+    font-weight: 300;
+    margin: 0.5em 0;
+}
+
+.beautiful-image-text span {
+    color: #009B77;
+}
+
+.beautiful-image-text h2 {
+    color: #eee;
+    font-size: 2em;
+    font-weight: 300;
+    max-width: 600px;
+    line-height: 2;
+    margin-bottom: 2.5em;
+}
+
+.beautiful-image-text button {
+    background-color: #F7CAC9;
+    color: #131313;
+    border-radius: 25px;
+    padding: 15px 25px;
+    font-size: 0.85em;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
 
 /*
-.loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  vertical-align: center;
+p {
+  color: white;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+h3 {
+  color:white;
 }
+*/
 
+/*
+.bg {
+  background-image: url("stock/background.jpg");
+
+  
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  
+}
 */
