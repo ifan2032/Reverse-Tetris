@@ -27,8 +27,6 @@
   <p>Completed rows don't clear</p>
   <p>Pieces stick together </p>
   <p>You can break tiles if you feel like it </p>
-  </div>
-  <div class="col">
   <h3> Things to keep in mind of: </h3>
   <p> Width is very small </p>
   <p> Have fun </p>
@@ -46,22 +44,81 @@
 
 -->
 <main>
+
+  
   <section id="beautiful-image">
-      <div class="beautiful-image-text">
-        <h1> REVERSE <span> TETRIS </span> </h1>
+      <div class="beautiful-image-text" id="blur">
+        
+                <h1> REVERSE <span> TETRIS </span> </h1>
+            </span>
+            <span class="gradient"> </span>
+            <span class="dodge"> </span>
+
+
         <h2> Are you smart enough to beat <span> THE COMPUTER </span> </h2> 
+        
+        <!--
         <button>PLAY NOW </button>
         <span>
         <button>LEARN MORE </button>
+      -->
+          <section>
+          <a href = "player.html">
+          <span> </span>
+          <span> </span>
+          <span> </span>
+          <span> </span>
+          Play Now
+          </a>
+
+          <a href = "#" onclick="toggle()">
+          <span> </span>
+          <span> </span>
+          <span> </span>
+          <span> </span>
+          Learn More
+          </a>
+          </section> 
+
+          
         </span>
       </div>
+
+      <div id="popup">
+        <h3> Basic Rules (SUPER SIMPLE!!!) </h3>
+        <p>Completed rows don't clear</p>
+        <p>Pieces stick together </p>
+        <p>You can break tiles if you feel like it </p>
+        <p> Width is very small </p>
+        <a href = "#" onclick="toggle()"> Close </a>
+      </div>
+
+
+      <script type="text/javascript">
+        function toggle() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active')
+        var popup = document.getElementById('popup');
+        popup.classList.toggle('active')
+        }
+      </script>
+
   </section>
+
+  
+
 
   <section id="latest-updates">
     <div class="flex">
 
     </div>
   </section>
+
+
+
+
+
+  
 </main>
 
 
