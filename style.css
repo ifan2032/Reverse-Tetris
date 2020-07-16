@@ -27,18 +27,16 @@ body {
     font-weight: 300;
     margin: 0.5em 0;
     text-shadow: 0px 0px 10px #F7CAC9,
-                0px 0px 20px #F7CAC9,
-                0px 0px 30px #F7CAC9;
+                 0px 0px 20px #F7CAC9,
+                 0px 0px 30px #F7CAC9;
 }
 
 
 .beautiful-image-text span {
     color: #009B77;
     text-shadow: 0px 0px 10px #009B77,
-                0px 0px 20px #009B77,
-                0px 0px 30px #009B77;
-                
-
+                 0px 0px 20px #009B77,
+                 0px 0px 30px #009B77;
 }
 
 .beautiful-image-text h2 {
@@ -69,7 +67,7 @@ body {
 
 a{
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   padding: 25px 30px;
   margin: 40px 0;
   color: #03e9f4;
@@ -93,6 +91,7 @@ a:nth-child(1)
 a:hover
 {
   background: #03e9f4;
+  text-decoration: none;
   color: #050801;
   box-shadow: 0 0 5px #03e9f4,
               0 0 25px #03e9f4,
@@ -219,25 +218,9 @@ a span:nth-child(4)
 }
 
 #popup.active
-{ 
+{
   top: 50%;
   visibility: visible;
   opacity: 1;
   transition: 0.5s;
 }
-
-
-/*
-.bg {
-  background-image: url("stock/background.jpg");
-
-  
-  height: 100%;
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  
-}
-*/

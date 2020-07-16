@@ -1,3 +1,5 @@
+// AUTHORS: Alek and Leon
+
 // NOTE:
 // this is not classic tetris
 // two of the biggest differences between this game and tetris are
@@ -7,19 +9,6 @@
 
 // conventions:
 // pieces can be fit in a 3 by 3 grid, or at least some square grid
-
-
-// TODO:
-// 1) heuristic for doing bigger grids
-// 2) make epic player interface
-// falling animation????
-// 3) DONT WANT TO NEED TO LEFT JUSTIFY
-
-//make great pictures
-//by tomorrow: everything will be in bootstrap and look nice
-// ALEKTRISITY
-// LETRIS
-
 
 // general functions
 function zeroVec(dim){
@@ -231,10 +220,11 @@ for(var y = 0; y < h; y++){
 }
 
 function setup(){
-  createCanvas(500,500);
+  let canvas = createCanvas(500,500);
+  canvas.parent("canvas-div");
   setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
   frameRate(20);
-  background(255,255,255,100);
+  background(200,200,200,100);
 }
 
 //draw is the function that runs over and over
