@@ -1,8 +1,9 @@
-.formrow {
-  width: 90%;
-  padding-left: 5%;
+.draggydiv {
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+
+  display:inline-block;
+
 }
 
-.formrow label {
-  width:20%;
-}

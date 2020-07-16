@@ -9,51 +9,59 @@
   </head>
   <body>
 
-<div id="player_sequence"> </div>
+<div id="piece_sequence"> </div>
+<div id="piece_bank"> </div>
 
 <script type="text/javascript">
 const NUM_PIECES = 4;
 const LENGTH_SEQUENCE = 8;
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+for(var j = 0; j < NUM_PIECES; j++) {
+  let imgTag = $("<img draggable='true' ondragstart='drag(event)'/>");
+  imgTag.attr("id", "piece"+j);
+  imgTag.attr("src", "piece_pics/piece" + j + ".png");
+  imgTag.attr("width", 100/NUM_PIECES + "%");
+  $("#piece_bank").append(imgTag);
+}
+
 for (var i = 0; i < LENGTH_SEQUENCE; i++) {
-  let rowTag = $("<form></form>");
-  rowTag.attr("id", "formrow"+i);
-  rowTag.attr("class", "formrow");
-  for(var j = 0; j < NUM_PIECES; j++) {
-    let labelTag = $("<label></label>");
-    let inputTag = $("<input>");
-    inputTag.attr("type", "radio");
-    inputTag.attr("value", j);
-    inputTag.attr("name", "inputrow"+i);
-    if(j == 0){
-      inputTag.attr("checked", true);
-    }
-
-    labelTag.append(inputTag);
-
-    let imgTag = $("<img />");
-    imgTag.attr("src", "piece_pics/piece" + j + ".png");
-
-    labelTag.append(imgTag);
-
-    rowTag.append(labelTag);
-  }
-  $("#player_sequence").append(rowTag);
+  let slotTag = $("<div ondrop='drop(event)' ondragover='allowDrop(event)'></div>");
+  slotTag.attr("id", "slot"+i);
+  slotTag.attr("class", "draggydiv");
+  slotTag.width(100/LENGTH_SEQUENCE + "%");
+  $("#piece_sequence").append(slotTag);
 }
 
 function submit_form(){
-  // get the sequence
-  let user_seq = "";
+  // TODO: fix this
+  let user_seq = "11111111";
+  /*
   for (var i = 0; i < LENGTH_SEQUENCE; i++) {
     user_seq += $(`input[name='inputrow${i}']:checked`).val();
   }
-
-  console.log(user_seq);
-  // spit them out to computer.html?seq=10012203
+  */
   window.location.href = "computer.html?seq="+user_seq;
 }
 
 </script>
 
+<br>
+<br>
+<br>
 <button onclick="submit_form()" class="btn">PLAY</button>
 
   </body>
