@@ -16,8 +16,9 @@
     <h1>Welcome to REVERSE TETRIS</h1>
     <p>THE. MOST. EPIC. GAME. EVER. INVENTED.</p>
     </div>
-    <div id="canvas-div">
-      <div id="success">
+
+    <div class="blah" id="blur">
+      <div id="success" >
         <a href = "player.html">
         <span> </span> <span> </span> <span> </span> <span> </span>
         NEXT LEVEL
@@ -25,13 +26,46 @@
       </div>
 
       <div id="fail">
-        <a href = "player.html">
+        <a href = "end.html">
         <span> </span> <span> </span> <span> </span> <span> </span>
         REVEAL IQ
         </a>
       </div>
 
+      <div id="ins">
+        <a href = "#" onclick="toggle()">
+        <span> </span> <span> </span> <span> </span> <span> </span>
+        Instructions
+        </a>
+      </div> 
+  </div>
+
+
+    <div id="canvas-div">
+        
     </div>
+
+    <div id="popup">
+        <h3> Basic Rules (SUPER SIMPLE!!!) </h3>
+        <p>Completed rows don't clear</p>
+        <p>Pieces stick together </p>
+        <p>You can break tiles if you feel like it </p>
+        <p> Width is very small </p>
+        <a href = "#" onclick="toggle()"> Close </a>
+    </div>
+
+      <script type="text/javascript">
+        function toggle() {
+          var blur = document.getElementById('blur');
+          blur.classList.toggle('active')
+          var popup = document.getElementById('popup');
+          popup.classList.toggle('active')
+        }
+      </script>
+
+
+    
+
 
 
 </body>
