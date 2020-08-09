@@ -47,8 +47,8 @@ for(var j = 0; j < NUM_PIECES; j++) {
   imgTag.attr("id", "piece"+j);
   imgTag.attr("src", "piece_pics/piece" + j + ".png");
   imgTag.attr("width", 100/NUM_PIECES + "%");
-  $("#piece_bank").append(imgTag);
-  $("#piece_bank").append(quantityTag);
+  $("#piece_bank"+j).append(imgTag);
+  $("#piece_bank"+j).append(quantityTag);
 }
 
 for (var i = 0; i < LENGTH_SEQUENCE; i++) {

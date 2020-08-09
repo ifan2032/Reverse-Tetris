@@ -9,10 +9,26 @@
   </head>
 <body>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#container-flex").css("color", "red");
+		$("#container-flex").css("font-family", "Courier New, Courier, monospace");
+	});
+</script>
 
 <div class="container">
   <div id="piece_sequence"> </div>
-  <div id="piece_bank"> </div>
+  
+	<div id="container-flex">
+		<div id="piece_bank0"> </div>
+
+		<div id="piece_bank1"> </div>
+
+		<div id="piece_bank2"> </div>
+
+		<div id="piece_bank3"> </div>
+
+	</div>
 </div>
 
 <script src="player.js" charset="utf-8"></script>

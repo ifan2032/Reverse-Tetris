@@ -5,6 +5,21 @@
   display:inline-block;
 }
 
+body {
+	background: url('stock/calm1.jpg');
+	background-size: cover;
+}
+
+#container-flex {
+	display: flex;
+	flex-direction: row;
+}
+.btn {
+	padding: 1em 2.5em 1em 2.5em;
+	background: linear-gradient(90deg, #CCFFFF, #FFCCCC);
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1.5em;
+}
 .formrow label img {
   width:20%;
 }
