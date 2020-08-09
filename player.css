@@ -1,6 +1,5 @@
 .draggydiv {
-  height: 100px;
-  padding: 10px;
+  height: 200px;
   border: 1px solid #aaaaaa;
 
   display:inline-block;
@@ -10,4 +9,8 @@
   width:20%;
 }
 
+
+.draggydiv img {
+  width: 100%;
+}
 

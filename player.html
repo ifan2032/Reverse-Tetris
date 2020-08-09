@@ -7,63 +7,18 @@
 
     <link rel="stylesheet" href="player.css">
   </head>
-  <body>
+<body>
 
-<div id="piece_sequence"> </div>
-<div id="piece_bank"> </div>
 
-<script type="text/javascript">
-const NUM_PIECES = 4;
+<div class="container">
+  <div id="piece_sequence"> </div>
+  <div id="piece_bank"> </div>
+</div>
 
-const LENGTH_SEQUENCE = 4;
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-
-for(var j = 0; j < NUM_PIECES; j++) {
-  let imgTag = $("<img draggable='true' ondragstart='drag(event)'/>");
-  imgTag.attr("id", "piece"+j);
-  imgTag.attr("src", "piece_pics/piece" + j + ".png");
-  imgTag.attr("width", 100/NUM_PIECES + "%");
-  $("#piece_bank").append(imgTag);
-}
-
-for (var i = 0; i < LENGTH_SEQUENCE; i++) {
-  let slotTag = $("<div ondrop='drop(event)' ondragover='allowDrop(event)'></div>");
-  slotTag.attr("id", "slot"+i);
-  slotTag.attr("class", "draggydiv");
-  slotTag.width(100/LENGTH_SEQUENCE + "%");
-  $("#piece_sequence").append(slotTag);
-}
-
-function submit_form(){
-  // TODO: fix this
-  let user_seq = "11111111";
-  /*
-  for (var i = 0; i < LENGTH_SEQUENCE; i++) {
-    user_seq += $(`input[name='inputrow${i}']:checked`).val();
-  }
-  */
-  window.location.href = "computer.html?seq="+user_seq;
-}
-
-</script>
-
+<script src="player.js" charset="utf-8"></script>
 <br>
 <br>
 <br>
 <button onclick="submit_form()" class="btn">PLAY</button>
-
-  </body>
+</body>
 </html>
