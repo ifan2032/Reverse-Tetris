@@ -64,6 +64,7 @@ const w = 4; // width of tetris thing
 const h = 5;
 const piece_dim = 3;
 const ANIMATION_WAIT_TIME = 1000;
+level = 1;
 
 // NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
@@ -255,4 +256,9 @@ function drawNextPiece(){
   else{
       setTimeout(drawNextPiece, ANIMATION_WAIT_TIME);
   }
+}
+
+function submit_form(){
+  //try this
+  window.location.href = "computer.html?level="+(level+1).toString();
 }

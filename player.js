@@ -64,5 +64,8 @@ function submit_form(){
     alert("no way dude, make the sequence ");
     return;
   }
-  window.location.href = "computer.html?seq="+sequence.join("");
+
+  //try this
+  let tmp = Number(sequence.join(""));
+  window.location.href = "computer.html?seq="+tmp.toString();
 }
