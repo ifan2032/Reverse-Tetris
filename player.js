@@ -1,7 +1,22 @@
 const NUM_PIECES = 4;
 const LENGTH_SEQUENCE = 5;
 
-let piece_quantities = [2,2,2,1];
+const urlParams = new URLSearchParams(window.location.search);
+const level = urlParams.get('level') || "1";
+
+const LEVEL_PIECE_QUANTITIES = {
+  "1": [1,1,1,0],
+  "2": [1,1,2,3],
+  "3": [2,2,2,1],
+  "4": [3,3,3,3],
+  "5": [4,4,4,4]
+}
+
+if (!LEVEL_PIECE_QUANTITIES[level]){
+  level = "1"
+}
+
+let piece_quantities = LEVEL_PIECE_QUANTITIES[level];
 let sequence = [];
 for(let i = 0; i < LENGTH_SEQUENCE; i++)
   sequence.push("-1");
