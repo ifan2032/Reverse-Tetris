@@ -59,12 +59,28 @@ function rotatePiece(piece, angle){
 }
 
 
+const urlParams = new URLSearchParams(window.location.search);
+const string_piece_sequence = urlParams.get("seq"); // "1111"
+const level = urlParams.get("level");
+let piece_sequence = [];
+for (let i = 0; i < string_piece_sequence.length; i++){
+  piece_sequence.push(parseInt(string_piece_sequence[i]));
+}
+
+
+let LEVEL_HEIGHT = {
+  "1" : 4,
+  "2" : 4,
+  "3" : 5,
+  "4" : 5, 
+  "5" : 6,
+}
 // algorithm-y stuff
 const w = 4; // width of tetris thing
-const h = 5;
+const h = LEVEL_HEIGHT[level];
 const piece_dim = 3;
 const ANIMATION_WAIT_TIME = 1000;
-level = 1;
+
 
 // NOTE: THESE MUST BE JUSTIFIED
 const PIECES = [
@@ -80,15 +96,6 @@ const COLORS = [
   "#ffffff03",
   "#ffff0003"
 ];
-
-const urlParams = new URLSearchParams(window.location.search);
-const string_piece_sequence = urlParams.get("seq"); // "1111"
-const level = urlParams.get("level");
-let piece_sequence = [];
-for (let i = 0; i < string_piece_sequence.length; i++){
-  piece_sequence.push(parseInt(string_piece_sequence[i]));
-}
-
 
 let n = piece_sequence.length;
 var skyline = zeroVec(w);
@@ -259,5 +266,9 @@ function drawNextPiece(){
 
 function submit_form(){
   //try this
-  window.location.href = "computer.html?level="+(level+1).toString();
+  if(level == 5) {
+    window.location.href = "end.html";
+  } else{
+    window.location.href = "player.html?level="+(parseInt(level)+1);
+  }
 }

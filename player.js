@@ -1,15 +1,23 @@
 const NUM_PIECES = 4;
-const LENGTH_SEQUENCE = 5;
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const level = urlParams.get('level') || "1";
 
 const LEVEL_PIECE_QUANTITIES = {
-  "1": [1,1,1,0],
+  "1": [2,2,1,2],
   "2": [1,1,2,3],
   "3": [2,2,2,1],
   "4": [3,3,3,3],
   "5": [4,4,4,4]
+}
+
+const LEVEL_LENGTH_SEQUENCE = {
+  "1" : 3,
+  "2" : 4, 
+  "3" : 5,
+  "4" : 6,
+  "5" : 7
 }
 
 if (!LEVEL_PIECE_QUANTITIES[level]){
@@ -17,6 +25,7 @@ if (!LEVEL_PIECE_QUANTITIES[level]){
 }
 
 let piece_quantities = LEVEL_PIECE_QUANTITIES[level];
+const LENGTH_SEQUENCE = LEVEL_LENGTH_SEQUENCE[level];
 let sequence = [];
 for(let i = 0; i < LENGTH_SEQUENCE; i++)
   sequence.push("-1");
@@ -82,5 +91,5 @@ function submit_form(){
 
   //try this
   let tmp = Number(sequence.join(""));
-  window.location.href = "computer.html?seq="+tmp.toString();
+  window.location.href = "computer.html?seq="+tmp.toString() + "&level=" + level;
 }
