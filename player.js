@@ -2,6 +2,10 @@ const NUM_PIECES = 4;
 
 
 const urlParams = new URLSearchParams(window.location.search);
+const score = parseInt(urlParams.get("score"));
+
+setTimeout(()=>{$("#display-score").text("YOUR SCORE:" + score);}, 500);
+
 const level = urlParams.get('level') || "1";
 
 const LEVEL_PIECE_QUANTITIES = {
@@ -91,5 +95,5 @@ function submit_form(){
 
   //try this
   let tmp = Number(sequence.join(""));
-  window.location.href = "computer.html?seq="+tmp.toString() + "&level=" + level;
+  window.location.href = "computer.html?seq="+tmp.toString() + "&level=" + level + "&score=" + score;
 }

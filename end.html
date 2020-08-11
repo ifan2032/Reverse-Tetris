@@ -9,15 +9,30 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="computer.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js" integrity="sha512-At/xiUTqCg8jxnCMRNDhDVDm4qxlyPt1K+GrDhUvRvR8MjlBq0RH65OVVaCXn3OuvyVWK8CdlQpxgrc/5YspHw==" crossorigin="anonymous"></script>
-    <script src="tetris.js"></script>
+
+    <style>
+        #display-score {
+            text-align: center;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+
+
 
 	<div class="jumbotron text-center">
     <h1>Welcome to REVERSE TETRIS</h1>
     <p>THE. MOST. EPIC. GAME. EVER. INVENTED.</p>
     </div>
 
-    <h1> YOUR IQ IS 150 </h1>
+    <h1 id="display-score"> YOUR IQ IS 150 </h1>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = parseInt(urlParams.get("score"));
+        $("#display-score").text("YOUR SCORE:" + score);
+    </script>
+
 </body>
 </html>

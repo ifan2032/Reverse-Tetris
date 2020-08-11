@@ -62,6 +62,7 @@ function rotatePiece(piece, angle){
 const urlParams = new URLSearchParams(window.location.search);
 const string_piece_sequence = urlParams.get("seq"); // "1111"
 const level = urlParams.get("level");
+const score = urlParams.get("score");
 let piece_sequence = [];
 for (let i = 0; i < string_piece_sequence.length; i++){
   piece_sequence.push(parseInt(string_piece_sequence[i]));
@@ -174,6 +175,10 @@ function dp(index, skyline) {
   }
 }
 
+
+
+
+
 // returns the new skyline array, or false if it is impossible to place the piece
 function updateSkyline(old_skyline, piece_type_index, angle, pos) {
   let oriented_piece = ORIENTED_PIECES[piece_type_index][angle];
@@ -266,9 +271,11 @@ function drawNextPiece(){
 
 function submit_form(){
   //try this
+  let this_game_score = 100 - Math.round(100 * (solution.val / piece_sequence.length));
+  let new_score = score * (level-1) / level + this_game_score * 1 / level;
   if(level == 5) {
-    window.location.href = "end.html";
+    window.location.href = "end.html?" + "score=" + new_score;
   } else{
-    window.location.href = "player.html?level="+(parseInt(level)+1);
+    window.location.href = "player.html?level="+(parseInt(level)+1) + "&score=" + new_score;
   }
 }
