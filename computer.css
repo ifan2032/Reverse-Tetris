@@ -21,7 +21,7 @@ body {
 {
   max-width: 1200px;
     margin: -30px auto 0;
-    position: absolute;
+  position: absolute;
     top: 40%;
     left: 0;
     right: 0;
@@ -30,6 +30,7 @@ body {
   background: #fff;
   opacity: 0;
   transition: 0.5s;
+  z-index: -1;
 
 }
 
