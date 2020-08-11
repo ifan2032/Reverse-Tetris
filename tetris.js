@@ -83,12 +83,11 @@ const COLORS = [
 
 const urlParams = new URLSearchParams(window.location.search);
 const string_piece_sequence = urlParams.get("seq"); // "1111"
+const level = urlParams.get("level");
 let piece_sequence = [];
 for (let i = 0; i < string_piece_sequence.length; i++){
   piece_sequence.push(parseInt(string_piece_sequence[i]));
 }
-
-
 
 
 let n = piece_sequence.length;
