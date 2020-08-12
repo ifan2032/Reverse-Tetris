@@ -6,9 +6,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="computer.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js" integrity="sha512-At/xiUTqCg8jxnCMRNDhDVDm4qxlyPt1K+GrDhUvRvR8MjlBq0RH65OVVaCXn3OuvyVWK8CdlQpxgrc/5YspHw==" crossorigin="anonymous"></script>
-    <script src="tetris.js"></script>
+
+    <link rel="stylesheet" href="static/CSS/computer.css">
+    <script src="static/JS/tetris.js"></script>
 </head>
 <body>
 
@@ -35,10 +36,12 @@
         </a>
       </div> 
     </div>
+
+
   </div>
 
 
-    <div id="canvas-div">
+        <div id="canvas-div">
         
     </div>
 
@@ -48,17 +51,7 @@
         <p>Pieces stick together </p>
         <p>You can break tiles if you feel like it </p>
         <p> Width is very small </p>
-        <a href = "#" onclick="toggle()"> Close </a>
+        <button class="btn btn-primary" href = "#" onclick="toggle()"> Close </button>
     </div>
-
-      <script type="text/javascript">
-        function toggle() {
-          var blur = document.getElementById('blur');
-          blur.classList.toggle('active')
-          var popup = document.getElementById('popup');
-          popup.classList.toggle('active')
-        }
-      </script>
-
 </body>
 </html>

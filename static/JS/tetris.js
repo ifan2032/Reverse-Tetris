@@ -18,7 +18,12 @@ function zeroVec(dim){
   }
   return vec;
 }
-
+function toggle() {
+  var blur = document.getElementById('blur');
+  blur.classList.toggle('active')
+  var popup = document.getElementById('popup');
+  popup.classList.toggle('active')
+}
 function copyMatrix(matrix){
   let newmatrix = [];
   for (var i = 0; i < matrix.length; i++) {
