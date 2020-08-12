@@ -1,11 +1,11 @@
 # TODO:
 
 # UI
-* player.html looks like crap
+* Improve the Visuals
 
 # major
 * levels
-  * market as IQ test:
+  * market as IQ test???:
   * surviving for i levels --> Z score: i - 5
   * 100 + 10 * (i-5)
   * Display IQ
