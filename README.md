@@ -1,3 +1,5 @@
+### Developed in collaboration with Alek Westover
+
 # Reverse-Tetris
 	-Regular Tetris involves the player placing a sequence of blocks, with the goal not to surpass a height limit. In this game, what we call REVERSE tetris, the player gives a sequence of blocks to the COMPUTER. The player wins if the computer is unable to place the given sequence in the grid. 
 	-NOTE: Because the computer is dependent upon a DP algorithm, special rules are applied for the algorithm to run in time. 
